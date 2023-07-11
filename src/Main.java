@@ -1,6 +1,8 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import model.City;
 
@@ -24,7 +26,8 @@ public class Main {
                 it.hasNext() ? it.next() : ""));
       }
     }
-    City maxPopulation = listCity.stream().max(Comparator.comparing(City::getPopulation)).get();
-    System.out.println(listCity.indexOf(maxPopulation) + " = " + maxPopulation.getPopulation());
+    Map<String, Long> cityInRegion =
+        listCity.stream().collect(Collectors.groupingBy(City::getRegion, Collectors.counting()));
+    System.out.println(cityInRegion);
   }
 }
