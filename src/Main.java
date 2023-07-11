@@ -24,6 +24,9 @@ public class Main {
                 it.hasNext() ? it.next() : ""));
       }
     }
+    listCity.sort(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName())));
+    listCity.sort(Comparator.comparing(City::getName));
+    listCity.sort((Comparator.comparing(City::getDistrict)));
     System.out.println(listCity);
   }
 }
